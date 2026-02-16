@@ -1,0 +1,33 @@
+create  table students_exp3 ( s_id int primary key,s_name varchar(30),physics int,
+chemistry int,mathematics int);
+SELECT * FROM students_exp3;
+desc students_exp3;
+insert into students_exp3 values(1,'ADITHYA',15,18,20);
+insert into students_exp3 values(2,'ABU',19,14,25);
+insert into students_exp3 values(3,'ABHI',11,21,33);
+insert into students_exp3 values(4,'BICHU',20,24,45);
+insert into students_exp3 values(5,'AYINA',15,18,35);
+insert into students_exp3 values(6,'DON',11,10,20);
+insert into students_exp3 values(7,'MARY',14,19,30);
+insert into students_exp3 values(8,'LION',17,12,29);
+insert into students_exp3 values(9,'BIJU',16,17,40);
+insert into students_exp3 values(10,'ZEA',15,18,33);
+
+SELECT AVG(physics) AS avg_physics FROM students_exp3;
+SELECT MAX(mathematics) AS highest_marks_maths FROM students_3;
+SELECT MIN(chemistry) AS lowest_marks_chemistry FROM students_3;
+SELECT COUNT(*) AS pass_physics FROM students_exp3 WHERE physics>=12;
+SELECT s_name FROM students_exp3 WHERE physics>=12 AND chemistry>=12 AND mathematics>=25;
+
+ALTER TABLE students_exp3 ADD status VARCHAR(20);
+UPDATE students_exp3 SET status='PASS' WHERE physics>=12 and chemistry >=12 AND mathematics>=25;
+UPDATE students_exp3 SET status='FAIL' WHERE physics <12 OR chemistry <12 OR mathematics<25;
+SELECT s_name, status FROM students_exp3;
+
+SELECT COUNT(CASE WHEN mathematics>= 25 AND physics>= 12 AND chemistry>=12
+THEN 1 END) * 100.0 / COUNT(*) AS overall_pass_percentage FROM students_exp3;
+
+SELECT AVG(mathematics+physics+chemistry) AS class_average FROM students_exp3;
+
+SELECT COUNT(*) AS total_pass_student FROM students_exp3 WHERE physics>=12
+AND chemistry>=12 AND mathematics>=25;
