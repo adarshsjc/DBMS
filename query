@@ -1,0 +1,49 @@
+CREATE TABLE ITEMS_1 (item_id int primary key,item_name varchar(50),Category_1 
+varchar(50),price int,instock int check (instock>=0));
+DESC items_1;
+CREATE TABLE customers_1 (cus_id int primary key, cust_name varchar(50) not null,
+Address varchar(50), state varchar(50));
+
+CREATE TABLE orders_1(order_id int primary key, item_id int, cus_id int, quantity 
+int, order_date DATE ,FOREIGN KEY (item_id) REFERENCES items_1(item_id),
+FOREIGN KEY (cus_id) REFERENCES customers_1 (cus_id));
+
+CREATE TABLE Delivery ( delivery_id int primary key, cus_id int, order_id int ,
+FOREIGN KEY (cus_id) REFERENCES customers_1 (cus_id), FOREIGN KEY (order_id)
+REFERENCES orders_1 (order_id));
+
+insert into items_1 values(1,'fan','accessories',100,60);
+insert into items_1 values(2,'case','mobile',10,600);
+insert into items_1 values(3,'screen','mobile',20,50);
+insert into items_1 values(4,'samsung_galaxy_s4','mobile',4000,90);
+insert into items_1 values(5,'sofa','house',6000,60);
+insert into items_1 values(6,'table','house',500,15);
+
+select * from items_1;
+
+insert into customers_1 values(10,'James','PP','KL');
+insert into customers_1 values(11,'Mickey','OO','KA');
+insert into customers_1 values(12,'Anu','II','KN');
+insert into customers_1 values(13,'Lvu','UU','KN');
+insert into customers_1 values(14,'Mice','YY','LM');
+insert into customers_1 values(15,'Sharon','YY','LM');
+
+insert into orders_1 values (20,1,10,2,TO_DATE ('15-JAN-2015','DD-MON-YYYY'));
+insert into orders_1 values (21,2,10,1,TO_DATE ('14-FEB-2018','DD-MON-YYYY'));
+insert into orders_1 values (22,3,10,5,TO_DATE ('15-MAR-2019','DD-MON-YYYY'));
+insert into orders_1 values (23,4,11,6,TO_DATE ('15-APR-2020','DD-MON-YYYY'));
+insert into orders_1 values (24,5,12,7,TO_DATE ('15-MAY-2021','DD-MON-YYYY'));
+insert into orders_1 values (25,6,13,5,TO_DATE ('15-JUN-2016','DD-MON-YYYY'));
+insert into orders_1 values (26,4,14,1,TO_DATE ('15-JUL-2024','DD-MON-YYYY'));
+insert into orders_1 values (27,5,15,20,TO_DATE ('15-AUG-2025','DD-MON-YYYY'));
+
+
+insert into Delivery values (30,10,20);
+insert into Delivery values (31,10,23);
+insert into Delivery values (32,11,24);
+insert into Delivery values (33,12,25);
+insert into Delivery values (34,13,27);
+
+
+SELECT DISTINCT c.* FROM customers_1 c 
+JOIN orders_1 o ON c.cus_id = o.cus_id;
