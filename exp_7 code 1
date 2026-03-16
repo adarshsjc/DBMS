@@ -1,0 +1,26 @@
+CREATE TABLE BANK(
+    bankcode varchar(3),
+    bankname varchar(30) not null,
+    headoffice varchar(30),
+    branches int not null check(branches > 0),
+    primary key(bankcode)
+);
+SELECT * from BANK;
+insert into BANK values('SBI','State Bank of India','Delhi',30);
+insert into BANK values('SIB','south Indian Bank','Ernakulam',20);
+insert into BANK values('AXI','Axis Bank','Madras',30);
+insert into BANK values('BOB','Bank of Baroda','Hyderabad',15);
+insert into BANK values('YES','YES Bank','Ernakulam',25);
+SELECT * from BANK;
+
+insert into BANK VALUES ('IFB','Indian Federal Bank','Ernakulam',25);
+commit;
+SELECT * from BANK;
+insert into BANK values ('ICL','ICL Fincorp','Ernakulam',5);
+SAVEPOINT A;
+SELECT * from BANK;
+insert into BANK values ('GMB','Grameen Bank','Pune',15);
+SAVEPOINT B;
+SELECT * from BANK;
+ROLLBACK TO B;
+SELECT * from BANK;
